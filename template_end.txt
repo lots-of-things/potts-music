@@ -1,0 +1,169 @@
+</CsScore>
+
+<CsInstruments>
+ sr = 44100
+ kr = 44100
+ ksmps = 1
+ nchnls = 1
+gisine		ftgen	0,	0,	4096,	10,	0
+
+instr 4
+
+gitrpt ftgen 0, 0, 0, 1, "samples/trpt-C-lo.wav", 0, 0, 0
+giclar ftgen 0, 0, 0, 1, "samples/clarinet-C-octave0.wav", 0, 0, 0
+giorga ftgen 0, 0, 0, 1, "samples/organ-transistor-octave0.wav", 0, 0, 0
+gipian ftgen 0, 0, 0, 1, "samples/piano-electric-reed-octave0.wav", 0, 0, 0
+gigirl ftgen 0, 0, 0, 1, "samples/singing-womanMA-C-oo.wav", 0, 0, 0
+giflut ftgen 0, 0, 0, 1, "samples/flute-alto-C.wav", 0, 0, 0
+
+endin
+
+instr 1
+
+ifc = p5
+iamp = p4
+ilen =p7
+itfc = p8
+istrt = p9
+ilstrt = p10
+ilend = p11
+itab = p12
+icross = p13
+ioff = p14
+
+asig1 flooper2 iamp, ifc/itfc, ilstrt, ilend, icross, itab, istrt, 2
+aenv transeg 0, .01, 0, 1, p3 - .11, 0, 1, .1, 0, 0
+asig1 = asig1 * aenv
+out asig1
+endin
+
+
+instr 2
+
+asig flooper2 p4, p5/p6, p7, p8, 0, p9, p7
+aenv transeg 0, .3, 0, 1, .01, 0, 0
+
+out asig*aenv
+
+endin
+
+instr 3
+
+asig flooper2 p4, p5/p6, p7, p8, 0, p9, p7
+aenv transeg 0, .1, 0, 1
+out asig*aenv
+
+endin
+
+
+instr	15	;trumpet
+ifc	=	p5
+iamp	=	p4
+
+itfc = 533
+istrt = 0
+ilstrt = 0.6
+ilen filelen "samples/trpt-C-lo.wav"
+ilend = 3.4
+itab = gitrpt
+icross = 0.0
+ioff = 0.2
+
+
+event_i "i", 1, 0, p3, p4, p5, p6, ilen, itfc, istrt, ilstrt, ilend, itab, icross, ioff
+
+endin
+
+instr	14	;clarinet
+ifc	=	p5
+iamp	=	p4
+
+itfc = 523.25
+istrt = 0
+ilstrt = 0.1
+ilen filelen "samples/clarinet-C-octave0.wav"
+ilend = 1.6
+itab = giclar
+icross = 0.0
+ioff = 0.2
+
+
+event_i "i", 1, 0, p3, p4, p5, p6, ilen, itfc, istrt, ilstrt, ilend, itab, icross, ioff
+
+endin
+
+instr	12	;flute
+ifc	=	p5
+iamp	=	p4
+
+itfc = 261.625
+istrt = 0
+ilstrt = 0.5
+ilen filelen "samples/flute-alto-C.wav"
+ilend = 1.75
+itab = giflut
+icross = 0.0
+ioff = 0.2
+
+
+event_i "i", 1, 0, p3, p4, p5, p6, ilen, itfc, istrt, ilstrt, ilend, itab, icross, ioff
+
+endin
+
+instr	10	;organ
+ifc	=	p5
+iamp	=	p4
+
+itfc = 261.625
+istrt = 0
+ilstrt = 0.1
+ilen filelen "samples/organ-transistor-octave0.wav"
+ilend = 1.0
+itab = giorga
+icross = 0.0
+ioff = 0.2
+
+
+event_i "i", 1, 0, p3, p4, p5, p6, ilen, itfc, istrt, ilstrt, ilend, itab, icross, ioff
+
+endin
+
+instr	11	;piano
+ifc	=	p5
+iamp	=	p4
+
+itfc = 130.8125
+istrt = 0
+ilstrt = 0.55
+ilen filelen "samples/piano-electric-reed-octave0.wav"
+ilend = 0.95
+itab = gipian
+icross = 0.0
+ioff = 0.2
+
+
+event_i "i", 1, 0, p3, p4, p5, p6, ilen, itfc, istrt, ilstrt, ilend, itab, icross, ioff
+
+endin
+
+instr	13	;voice
+ifc	=	p5
+iamp	=	p4
+
+itfc = 261.625
+istrt = 0
+ilstrt = 0.5
+ilen filelen "samples/singing-womanMA-C-oo.wav"
+ilend = 3.0
+itab = gigirl
+icross = 0.0
+ioff = 0.2
+
+
+event_i "i", 1, 0, p3, p4, p5, p6, ilen, itfc, istrt, ilstrt, ilend, itab, icross, ioff
+
+endin
+
+</CsInstruments>
+
+</CsoundSynthesizer>
